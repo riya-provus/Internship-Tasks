@@ -24,15 +24,15 @@ map,reduce,filter,find,some(returns true or false based on condition ),every(ret
 11. function composition
 combining multiple functions to creating a new function
 
-1. Prototype
+12. Prototype
 prototype defines shared properties
 it creates the function single copy which will be shared by each instance
 Helps to save the memory.
 It exist only on the constructor function.
-2. __proto__
+13. __proto__
 it just acts as a link which points to the parent prototype (points to the root)
 it exist for all objects and used in Inheritance
-3. Prototype chaining
+14. Prototype chaining
           s2
            ↓ __proto__
           Student.prototype
@@ -40,11 +40,21 @@ it exist for all objects and used in Inheritance
           Object.prototype
            ↓ __proto__
           null
-4. Destructuring
+15. Destructuring
 it just unwraps the properties of the object into the independenat variables 
-5. Spread Operator
+16. Spread Operator
 used to merge two arrays or just create a new array with few modifications in original
-6.Inheritance in prototyping
-      newone.prototype=Object.create(old.prototype);
+17.Inheritance in prototyping
+                newone.prototype=Object.create(old.prototype);
     It helps to inherit all methods from the parent function/object
-   
+
+    
+18. Promises helps to maintain a synchronous calling in the code
+19. After creating a new promise the function is being paused but not the entire code is being interupted
+20. the code outside the function keeps on executing.
+21. once the promise is being resolved then the remaining part of the function starts execution
+22. await is needed only for asynchronous function
+23. As callbacks exist, so inorder to wait till it executes we use promise
+24. Once promise is resolved, the wait is over and the further code in function proceeds execution
+25. callbacks never return a answer. So we need Promises whenever we need a value in return from callbacks
+
