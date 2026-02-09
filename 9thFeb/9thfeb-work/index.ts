@@ -18,7 +18,7 @@ let info_d=undefined;
 console.log(typeof info_d);
 
 //typeof always follows javascript rules at the runtime so it is not impacted by static typing 
-
+   
 //Conditional chaining
 let obj:{age:number,name:string,roll_no?:number};
 obj={
@@ -64,11 +64,10 @@ if(typeof information1 =="string"){
 function getinfo():void{
     console.log("Hello void");    
 }
-console.log(getinfo());
-console.log("Outside Void");
-
+console.log(getinfo());     //returns undefined
+console.log("Outside Void");//always reached
 function getinfo2():never{
     throw new Error("Inside never");
 }
-console.log(getinfo2());
-console.log("Outside Never");
+console.log(getinfo2());   //returns nothing
+console.log("Outside Never");//never reached

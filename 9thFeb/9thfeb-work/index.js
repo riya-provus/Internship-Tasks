@@ -47,10 +47,10 @@ if (typeof information1 == "string") {
 function getinfo() {
     console.log("Hello void");
 }
-console.log(getinfo());
-console.log("Outside Void");
+console.log(getinfo()); //returns undefined
+console.log("Outside Void"); //always reached
 function getinfo2() {
     throw new Error("Inside never");
 }
-console.log(getinfo2());
-console.log("Outside Never");
+console.log(getinfo2()); //returns nothing
+console.log("Outside Never"); //never reached
