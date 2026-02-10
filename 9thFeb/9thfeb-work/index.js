@@ -1,3 +1,4 @@
+
 console.log("Hello");
 //static typing with union types
 var data = "riya";
@@ -43,14 +44,39 @@ var information1 = "riya";
 if (typeof information1 == "string") {
     console.log(information1.toLowerCase());
 }
-//void and never 
-function getinfo() {
-    console.log("Hello void");
+// Async function to fetch and structure data
+function fetchAndStructureData() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, unstructuredData, structuredData, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("https://jsonplaceholder.typicode.com/users")];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    unstructuredData = _a.sent();
+                    structuredData = unstructuredData.map(function (user) { return ({
+                        name: user.name,
+                        email: user.email,
+                        city: user.address.city
+                    }); });
+                    // Print structured data
+                    console.log("Structured Data:");
+                    structuredData.forEach(function (user) {
+                        console.log("".concat(user.name, " lives in ").concat(user.city, " and can be contacted at ").concat(user.email));
+                    });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error("Error fetching or processing API data:", error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
-console.log(getinfo()); //returns undefined
-console.log("Outside Void"); //always reached
-function getinfo2() {
-    throw new Error("Inside never");
-}
-console.log(getinfo2()); //returns nothing
-console.log("Outside Never"); //never reached
+// Call the function
+fetchAndStructureData();

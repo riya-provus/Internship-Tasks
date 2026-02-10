@@ -61,13 +61,65 @@ if(typeof information1 =="string"){
 
 
 //void and never 
-function getinfo():void{
-    console.log("Hello void");    
+// function getinfo():void{
+//     console.log("Hello void");    
+// }
+// console.log(getinfo());     //returns undefined
+// console.log("Outside Void");//always reached
+// function getinfo2():never{
+//     throw new Error("Inside never");
+// }
+// console.log(getinfo2());   //returns nothing
+// console.log("Outside Never");//never reached
+
+
+//mapping dynamic data to structured
+// TypeScript code for fetching API and converting to structured JSON
+
+// Define interface for the API response
+interface APIUser {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: {
+        street: string;
+        city: string;
+        zipcode: string;
+    };
 }
-console.log(getinfo());     //returns undefined
-console.log("Outside Void");//always reached
-function getinfo2():never{
-    throw new Error("Inside never");
+
+// Define interface for structured data
+interface StructuredUser {
+    name: string;
+    email: string;
+    city: string;
 }
-console.log(getinfo2());   //returns nothing
-console.log("Outside Never");//never reached
+
+// Async function to fetch and structure data
+async function fetchAndStructureData(): Promise<void> {
+    try {
+        // Fetch data from API
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        const unstructuredData: APIUser[] = await response.json(); // Type assertion
+
+        // Map dynamic data to structured data
+        const structuredData: StructuredUser[] = unstructuredData.map(user => ({
+            name: user.name,
+            email: user.email,
+            city: user.address.city
+        }));
+
+        // Print structured data
+        console.log("Structured Data:");
+        structuredData.forEach(user => {
+            console.log(`${user.name} lives in ${user.city} and can be contacted at ${user.email}`);
+        });
+
+    } catch (error) {
+        console.error("Error fetching or processing API data:", error);
+    }
+}
+
+// Call the function
+fetchAndStructureData();
