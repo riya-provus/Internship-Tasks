@@ -138,6 +138,7 @@
 // makePayment(new UPIPayment());
 
 
+
 // //super keyword
 // class Animal {
 //     val:string;
@@ -160,6 +161,7 @@
 // console.log(d.val);
 
 
+
 // //Type assertion
 // //1.Angle bracket
 // const data="Riya";
@@ -171,32 +173,51 @@
 // console.log(ans);
 
 
-//Type Guards
-//1.typeof
-const data:string="Riya";
-if(typeof data=="string"){
-    console.log(data.toLowerCase());    
-}
-//2.instanceof
-class Dog {
-  bark() {
-    console.log("Barks");    
-  }
-}
-class Cat {
-  meow() {
-    console.log("Meows");    
-  }
-}
-function makeSound(animal: Dog | Cat) {
-  if (animal instanceof Dog) {
-    animal.bark();
-  } else {
-    animal.meow();
-  }
-}
-makeSound(new Cat());
+
+// //Type Guards
+// //1.typeof
+// const data:string="Riya";
+// if(typeof data=="string"){
+//     console.log(data.toLowerCase());    
+// }
+// //2.instanceof
+// class Dog {
+//   bark() {
+//     console.log("Barks");    
+//   }
+// }
+// class Cat {
+//   meow() {
+//     console.log("Meows");    
+//   }
+// }
+// function makeSound(animal: Dog | Cat) {
+//   if (animal instanceof Dog) {
+//     animal.bark();
+//   } else {
+//     animal.meow();
+//   }
+// }
+// makeSound(new Cat());
 
 
+//Generics helps in api response
+interface User{
+    id:number;
+    name:string;
+    email:string;
+}
+async function fetchData<T>(apikey:string):Promise<T>{
+    const data=await fetch(apikey);
+    const answer=await data.json();
+    return answer;
+}
+async function main() {
+    const received= await fetchData<User[]>("https://jsonplaceholder.typicode.com/users");
+    received.map((al)=>{
+        console.log(al.email , al.id , al.name);        
+    })
+}
+main();
 
 
