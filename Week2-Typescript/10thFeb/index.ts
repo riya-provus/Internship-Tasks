@@ -121,18 +121,56 @@
 // }
 
 
-//enums
-enum Role{
-    Admin="admin",
-    User="user"
-}
-type access=Record<Role,boolean>;
-const data: access = {
-    [Role.Admin]: true,
-    [Role.User]: false
-};
+// //enums
+// enum Role{
+//     Admin="admin",
+//     User="user"
+// }
+// type access=Record<Role,boolean>;
+// const data: access = {
+//     [Role.Admin]: true,
+//     [Role.User]: false
+// };
 
-const userinfo="admin";
-if(data[userinfo]){
-    console.log("hello");    
+// const userinfo="admin";
+// if(data[userinfo]){
+//     console.log("hello");    
+// }
+
+
+// //Fetching API
+interface User {
+  id: number;
+  name: string;
+  email: string;
 }
+async function fetchUsers():Promise<User[]>{
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        const data: User[] = await response.json();
+        return data;
+}
+
+async function dataReceived(){
+    const data=await fetchUsers();
+    data.map((al)=>{
+        console.log(al.id, al.name, al.email);
+    });
+    
+    // console.log(data);    
+}
+dataReceived();
+
+// async function delayedLog() {
+//   return new Promise<void>((resolve) => {
+//     setTimeout(() => {
+//       console.log("Hello after 1 second");
+//       resolve();
+//     }, 1000);
+//   });
+// }
+// async function main() {
+//   await delayedLog();
+//   console.log("Done");
+// }
+// main();
+
