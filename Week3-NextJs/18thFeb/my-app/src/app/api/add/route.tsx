@@ -17,8 +17,7 @@ export async function POST(request:Request) {
   const parseResult=CreateItemSchema.safeParse(data);
 
   if(!parseResult.success){
-    console.log("errror");
-    
+    console.log("errror");    
     return NextResponse.json(
       {success:false,message:"Invalid data"}
     )
